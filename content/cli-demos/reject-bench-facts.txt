@@ -1,0 +1,24 @@
+# reject-bench facts (verbatim, file:line)
+# repo: /Users/ian/workspace/reject-bench
+
+## 문제 서술
+README.md:7	> 여러 AI 코딩 세션에서 지속형 가드를 운영하는 1인 개발자는, 가드 발동 사건과 당시 맥락이 구조화되어 남지 않아 그 가드가 명시 정책대로 막았는지와 실제로 도움이 됐는지 검증할 수 없고, 결국 기억과 흩어진 오류 로그에 의존해 가드를 유지·수정·제거한다.
+
+## 분리하는 두 판단
+README.md:11	## v7이 분리하는 두 판단
+README.md:13	- **정책 일치성**: 사건 당시 버전으로 고정된 가드 맥락을 받은 독립 LLM이 "이 차단이 명시 정책상 옳았는가" 하나를 판단 (`correct_block | incorrect_block | insufficient_context`)
+README.md:14	- **실제 유용성**: 사용자가 작업에 도움이 됐는지 판단하고 가드의 `keep`, `modify`, `remove`를 결정
+README.md:16	정책대로 막았지만 불필요할 수 있고, 정책과 어긋났지만 우연히 도움 될 수도 있으므로 둘을 하나의 오탐률로 합치지 않습니다.
+
+## README lead sentence
+README.md:3	여러 AI 코딩 세션에서 지속형 가드가 남긴 **기각(reject) 사건을 심판대(bench)에 올려**, 그 증거로 가드를 유지·수정·제거하기로 결정하는 개인 도구 실험입니다. 이름의 bench는 벤치마크가 아니라 판사석입니다 — 벤치마크·오탐률 계획은 v7에서 폐기했습니다.
+
+## 개명 계획 (guard-ledger)
+.dryforge/spec.md:14	4. 프로젝트 이름을 **guard-ledger**로 바꾼다 — 저장소·디렉터리·패키지·파이썬 모듈·환경변수·조회 서버명·살아 있는 문서·외부 배선 전부(§11~§12).
+.dryforge/spec.md:200	| 패키지명 (`pyproject.toml`) | `reject-bench` | `guard-ledger` |
+
+## 테스트 건수
+README.md 에는 테스트 건수('N passed' 등)가 명시돼 있지 않다 (grep -n -E 'passed|pytest|테스트' README.md → 해당 행 없음).
+README 밖 참고(요청 범위 밖, 보조):
+HANDOFF.md:9	판정 번들1.1의 사건 문자열 정화는 A2 `5e4170e`, 통합 코드 `8d870a2`다(⑯). 신규 검증 red14실패·1통과 → green15통과, 독립 계약 리뷰 편차0건·관련60건 통과, 통합 `uv run pytest` **557건 exit0**, 저장소 밖 import exit0. 이후는 문서 변경뿐이다.
+.dryforge/003/plan.md:126	- [x] **`diff CLAUDE.md AGENTS.md` exit 0** 확인 + `uv run pytest` 520건 통과

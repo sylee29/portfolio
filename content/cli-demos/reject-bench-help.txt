@@ -1,0 +1,20 @@
+usage: python -m rejectbench.cli [-h]
+                                 {validate,register,list,show,judge,review,guard,decide,decisions,report} ...
+
+버전 고정 GuardSpec 등록부 CLI
+
+positional arguments:
+  {validate,register,list,show,judge,review,guard,decide,decisions,report}
+    validate            draft 파일을 쓰지 않고 검증한다
+    register            draft를 검증해 등록부에 append한다
+    list                등록된 가드와 버전을 나열한다
+    show                spec 하나를 JSON으로 출력한다
+    judge               새 operation 사건을 LLM으로 정책 판정한다 (승인 없이는 dry-run)
+    review              새 operation 사건의 전수 유용성 검토
+    guard               가드별 최소 뷰
+    decide              keep | modify | remove 결정을 근거 사건과 함께 append한다
+    decisions           가드 하나의 결정 이력 (append 순서)
+    report              지표·병기 상태 Markdown 보고서 — stdout 또는 --out 파일
+
+options:
+  -h, --help            show this help message and exit

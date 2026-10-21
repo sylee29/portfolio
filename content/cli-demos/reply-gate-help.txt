@@ -1,0 +1,39 @@
+usage: evaluate.py [-h] [--live | --stub-llm] [--golden-set GOLDEN_SET]
+                   [--l1-fixtures L1_FIXTURES]
+                   [--judge-fixtures JUDGE_FIXTURES] [--out-dir OUT_DIR]
+                   [--report-stem REPORT_STEM]
+                   [--similarity-threshold SIMILARITY_THRESHOLD]
+                   [--top-k TOP_K] [--judge-model 모델] [--measurements 번호목록]
+                   [--declare-experiment 지문항목]
+
+L1 게이트 단위 정확도(측정 1)·파이프라인 판정 일치율(측정 2)·L2 판정 단위 정확도(측정 3)를 측정한다
+
+options:
+  -h, --help            show this help message and exit
+  --live                고른 과금 측정을 실제 모델로 실행한다 (과금·비결정론). 측정 2 는 OPENAI_API_KEY
+                        + DB, 측정 3 은 L2 켜짐 + ANTHROPIC_API_KEY 를 요구한다 — 무엇을
+                        고를지는 `--measurements` 다
+  --stub-llm            측정 2 를 결정론 대역(생성·임베딩·판정)으로 실행한다 (하네스 배관 검증용 — 실제 수치가
+                        아니다. 측정 3 은 돌지 않는다)
+  --golden-set GOLDEN_SET
+  --l1-fixtures L1_FIXTURES
+  --judge-fixtures JUDGE_FIXTURES
+  --out-dir OUT_DIR
+  --report-stem REPORT_STEM
+                        리포트 파일 이름 조각 (기본: L2 켜짐 실측이면 `evaluation-live-l2-<n>`,
+                        꺼짐 실측이면 `evaluation-live`, 실측이 아니면 `evaluation`). 라이브
+                        이름 ⇔ 실측 · L2 켜짐 ⇔ l2 접두 규칙과 기존 실측 덮어쓰기 금지가 실행 전에 강제된다
+  --similarity-threshold SIMILARITY_THRESHOLD
+                        정책 검색 유사도 임계값 (기본: --stub-llm 이면 0.05, 아니면 설정값)
+  --top-k TOP_K         정책 검색 상위 k (기본: 설정값)
+  --judge-model 모델      L2 판정 모델 (기본: 설정값). 판정 모델 계열 비교를 **실행 인자로만** 하기 위한 것이라
+                        설정 기본값은 바뀌지 않는다 — 고른 값은 실행 조건 지문의 `judge_model` 에 그대로
+                        실린다
+  --measurements 번호목록   돌릴 **과금 측정**을 고른다 (쉼표 구분: `2`·`3`·`2,3`. 기본: 둘 다). 측정
+                        1 은 무과금·결정론이라 항상 돈다. 예: `--live --measurements 3` 은 판정
+                        픽스처만 사는 측정 3 단독 실측이고, DB 도 OPENAI_API_KEY 도 필요 없다. 고르지
+                        않은 측정은 리포트에 '미실행 + 사유'로 적힌다(0 채움 금지).
+  --declare-experiment 지문항목
+                        이번 실행이 **의도적으로 바꾼** 조건 지문 항목(반복 가능). 선언된 항목의 차이는 대조를
+                        막지 않고 기준선 줄에 차이 목록으로 병기된다. 선언하지 않은 불일치만 '대조 불가'다 — 조용한
+                        조건 드리프트를 잡는 것이 지문의 존재 이유다.

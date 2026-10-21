@@ -1,0 +1,3 @@
+GateResult(verdict=<Verdict.REJECT: 'reject'>, reject_reasons=(<RejectReason.PII_DETECTED: 'pii_detected'>,))
+GateResult(verdict=<Verdict.PASS: 'pass'>, reject_reasons=())
+GateResult(verdict=<Verdict.REJECT: 'reject'>, reject_reasons=(<RejectReason.MISSING_CITATION: 'missing_citation'>, <RejectReason.INVALID_CITATION: 'invalid_citation'>))

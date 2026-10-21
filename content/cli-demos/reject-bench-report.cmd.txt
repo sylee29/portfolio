@@ -1,0 +1,1 @@
+cmd: uv run python -m rejectbench.cli report  (stdout only, no --out; truncated to first 80 lines) | cwd: /Users/ian/workspace/reject-bench | exit: 0

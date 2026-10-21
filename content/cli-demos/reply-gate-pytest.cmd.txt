@@ -1,0 +1,1 @@
+cmd: env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY uv run pytest -m "not db" -p no:cacheprovider  (pyproject addopts already adds -q; db-marked Postgres tests deselected on purpose) | cwd: /Users/ian/workspace/reply-gate | exit: 0

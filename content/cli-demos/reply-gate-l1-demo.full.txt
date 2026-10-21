@@ -1,0 +1,25 @@
+$ env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY uv run python -c "
+from reply_gate.contracts import Evidence, EvidenceSource
+from reply_gate.gate import evaluate_draft
+
+def ev(text):
+    return [Evidence(id='e1', source=EvidenceSource.POLICY, content=text, evidence_text=text)]
+
+def draft(text, cites=('e1',)):
+    return {'claims': [{'text': text, 'citation_ids': list(cites)}]}
+
+# 1) 근거에 없는 전화번호를 지어냈다 -> pii_detected
+print(evaluate_draft(raw_draft=draft('고객센터 1588-1234 로 연락 주세요.'),
+                     evidences=ev('고객센터는 평일 09:00~18:00 운영합니다.')))
+# 2) 근거에 있는 값의 정상 에코 -> 표기 형식이 달라도 pass
+print(evaluate_draft(raw_draft=draft('연락처는 01012345678 입니다.'),
+                     evidences=ev('customer_phone=010-1234-5678')))
+# 3) 근거에 없는 ID -> invalid_citation, 빈 citation -> missing_citation
+print(evaluate_draft(raw_draft={'claims': [{'text': 'a', 'citation_ids': ['e9']},
+                                           {'text': 'b', 'citation_ids': []}]},
+                     evidences=ev('x')))
+"
+
+GateResult(verdict=<Verdict.REJECT: 'reject'>, reject_reasons=(<RejectReason.PII_DETECTED: 'pii_detected'>,))
+GateResult(verdict=<Verdict.PASS: 'pass'>, reject_reasons=())
+GateResult(verdict=<Verdict.REJECT: 'reject'>, reject_reasons=(<RejectReason.MISSING_CITATION: 'missing_citation'>, <RejectReason.INVALID_CITATION: 'invalid_citation'>))

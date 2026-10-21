@@ -1,0 +1,1 @@
+cmd: uv run python -m rejectbench.cli --help | cwd: /Users/ian/workspace/reject-bench | exit: 0

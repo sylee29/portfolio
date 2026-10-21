@@ -1,0 +1,16 @@
+[
+  {
+    "guard_id": "block-dangerous-git",
+    "latest_version": 1,
+    "versions": [
+      1
+    ]
+  },
+  {
+    "guard_id": "protect-live-reports",
+    "latest_version": 1,
+    "versions": [
+      1
+    ]
+  }
+]
