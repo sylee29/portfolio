@@ -8,9 +8,9 @@ export const guardLedger: Project = {
   titleSub: "구 reject-bench",
   period: "2026.08 — 2026.10",
   kind: "개인 프로젝트",
-  badges: [{ text: "004 주기 · 개명 진행 중", tone: "wine" }],
+  badges: [],
   cardBadges: [],
-  description: 'AI 코딩 가드의 차단 사건을 기록하고, "정책대로 막았나"와 "실제 도움이 됐나"를 분리해 판정하는 도구 — 지표를 먼저 정의하고 기준선을 쟀다',
+  description: 'AI 코딩 에이전트에 걸어 둔 가드레일(위험 명령 차단 훅)의 차단 사건을 기록하고, "정책대로 막았나"(LLM 판정)와 "실제 도움이 됐나"(사람 검토)를 분리해 판정하는 도구 — 지표를 먼저 정의하고 기준선을 쟀다',
   links: [{ kind: "external", label: "GitHub", href: "https://github.com/sylee29/guard-ledger" }],
   chips: ["지표 정의", "관찰 프로토콜", "Python", "Claude Code hooks", "MCP"],
   media: {
@@ -56,12 +56,29 @@ export const guardLedger: Project = {
         {
           type: "paragraph",
           variant: "intro",
-          text: 'AI 코딩 가드의 차단 사건을 기록하고, "정책대로 막았나"와 "실제 도움이 됐나"를 분리해 판정하는 도구 — 지표를 먼저 정의하고 기준선을 쟀다.',
+          text: 'AI 코딩 에이전트에 걸어 둔 가드레일(위험 명령 차단 훅)의 차단 사건을 기록하고, "정책대로 막았나"(LLM 판정)와 "실제 도움이 됐나"(사람 검토)를 분리해 판정하는 도구 — 지표를 먼저 정의하고 기준선을 쟀다.',
         },
         {
           type: "quote",
           text: '"여러 AI 코딩 세션에서 지속형 가드가 남긴 기각(reject) 사건을 심판대(bench)에 올려, 그 증거로 가드를 유지·수정·제거하기로 결정하는 개인 도구 실험입니다."',
           src: "GL/README:3",
+        },
+        { type: "subLabel", text: "무엇인가 — LLM도 AI 에이전트도 아닌, 에이전트의 가드레일을 평가하는 도구" },
+        {
+          type: "bullets",
+          items: [
+            {
+              text: "평가 대상은 Claude Code·Codex 같은 AI 코딩 에이전트에 걸어 둔 가드레일 — 위험한 명령이나 편집을 막는 훅 스크립트다. 예: 전역 `block-dangerous-git.sh`(위험 git 명령 차단), reply-gate `protect-live-reports.sh`(커밋된 실측 리포트의 사후 편집 차단).",
+              src: "GL/README:20-23",
+            },
+            {
+              text: "Guard Ledger는 그 훅이 막은 사건을 기록하고, 차단마다 두 판단을 따로 받는다 — 정책상 옳은 차단이었나는 독립 LLM이, 실제로 도움이 됐나는 사람이 판단해 가드를 `keep | modify | remove` 한다.",
+              src: "GL/README:13-14",
+            },
+            {
+              text: "형태는 Python CLI와 읽기 전용 MCP 서버다. LLM은 판정 단계에서만 쓰는 심판(LLM-as-a-judge)이고, 도구 자체가 LLM이나 에이전트인 것은 아니다.",
+            },
+          ],
         },
         { type: "paragraph", variant: "role", text: "역할 — 문제 정의 · 조사 · 설계 · 구현 · 검증 (1인)" },
       ],
@@ -159,7 +176,7 @@ export const guardLedger: Project = {
     {
       label: "현재 상태와 다음",
       blocks: [
-        { type: "paragraph", variant: "todo", text: "이름을 guard-ledger로 바꾸는 004 주기 진행 중 (저장소·패키지·MCP 서버명).", src: ".dryforge/spec.md:14, 200" },
+        { type: "paragraph", text: "reject-bench에서 guard-ledger로 개명을 마쳤다 (004 주기 — 저장소·패키지·MCP 서버명).", src: ".dryforge/spec.md:14, 200" },
       ],
     },
   ],
