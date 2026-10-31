@@ -6,7 +6,7 @@ export const guardLedger: Project = {
   mono: "GL",
   title: "guard-ledger",
   titleSub: "구 reject-bench",
-  period: "2026.08 — 2026.10",
+  period: "2026.08 —",
   kind: "개인 프로젝트",
   badges: [],
   cardBadges: [],
