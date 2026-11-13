@@ -20,3 +20,10 @@ import rgEsc from "../../public/images/reply-gate/demo-escalation.gif";
 
 export const ollabomShots = { ob01, ob02, ob03, ob04, ob05, ob06, ob07, ob08, ob09, ob11, ob12, ob13 };
 export const replyGateGifs = { rgL1, rgPass, rgL2, rgEsc };
+
+import jf01 from "../../public/images/job-fit/01-welcome.png";
+import jf02 from "../../public/images/job-fit/02-chat-draft.png";
+import jf03 from "../../public/images/job-fit/03-compare.png";
+import jf04 from "../../public/images/job-fit/04-detail.png";
+
+export const jobFitShots = { jf01, jf02, jf03, jf04 };

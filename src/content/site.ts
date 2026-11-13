@@ -46,7 +46,7 @@ export const site = {
     projects: {
       num: "03",
       title: "PROJECTS",
-      lead: '대표 작업 1개와 다른 작업 2개. 카드 제목이나 "자세히 보기"를 누르면 상세가 열립니다.',
+      lead: '대표 작업 1개와 다른 작업 3개. 카드 제목이나 "자세히 보기"를 누르면 상세가 열립니다.',
     },
     contact: {
       num: "04 · CONTACT",

@@ -2,9 +2,10 @@ import { SECTION_LABELS, type Project } from "../types";
 import { ollabom } from "./ollabom";
 import { replyGate } from "./reply-gate";
 import { guardLedger } from "./guard-ledger";
+import { jobFit } from "./job-fit";
 
 /** Card order on the home page (E4 §4). */
-export const projects: readonly Project[] = [ollabom, replyGate, guardLedger];
+export const projects: readonly Project[] = [ollabom, replyGate, guardLedger, jobFit];
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
